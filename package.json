@@ -1,0 +1,22 @@
+{
+  "name": "aenzbisys",
+  "version": "1.0.0",
+  "description": "restaurant pos and e-commerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allyelvis/aenzbisys.git"
+  },
+  "keywords": [
+    "pos"
+  ],
+  "author": "Ally Elvis Nzeyimana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/allyelvis/aenzbisys/issues"
+  },
+  "homepage": "https://github.com/allyelvis/aenzbisys#readme"
+}
