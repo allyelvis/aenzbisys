@@ -1,0 +1,14 @@
+{
+  "name": "restaurant-pos-ecommerce",
+  "version": "1.0.0",
+  "description": "API integration for Restaurant POS and E-commerce projects",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0",
+    "body-parser": "^1.19.0"
+  }
+}

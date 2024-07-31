@@ -1,0 +1,22 @@
+language = "nodejs"
+run = "node server.js"
+onstart = """
+npm install
+chmod +x database-setup.sh
+./database-setup.sh
+"""
+title = "Restaurant POS and E-commerce Angular Projects"
+[env]
+REPLIT_DB_URL="your_database_url"
+entrypoint = "server.js"
+[theme]
+editor = "dark"
+console = "dark"
+[hidden]
+patterns = [
+  "node_modules",
+  ".git"
+]
+[layout]
+codeFiles = ["server.js"]
+terminalOpen = true
