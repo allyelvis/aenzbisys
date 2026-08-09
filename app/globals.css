@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+
+  --radius: 2px;
+}
+
+:root {
+  /* Technical / terminal palette: near-black bg, dim borders, signal-green primary */
+  --background: oklch(0.16 0.006 260);
+  --foreground: oklch(0.9 0.01 150);
+  --surface: oklch(0.2 0.008 260);
+  --surface-hover: oklch(0.24 0.01 260);
+  --border: oklch(0.32 0.012 260);
+  --muted: oklch(0.62 0.01 160);
+  --primary: oklch(0.82 0.19 145);
+  --primary-foreground: oklch(0.16 0.006 260);
+  --accent: oklch(0.72 0.14 195);
+  --warn: oklch(0.82 0.15 85);
+  --danger: oklch(0.68 0.2 25);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  background-color: var(--color-background);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle scanline / grid backdrop for terminal feel */
+.grid-backdrop {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--color-border) 40%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--color-border) 40%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker { animation: ticker 40s linear infinite; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-background); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 0; }
