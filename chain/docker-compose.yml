@@ -1,0 +1,44 @@
+services:
+  # Canonical chainId 65690 node initialized from your genesis.json.
+  # Serves JSON-RPC on 8545 (HTTP) and 8546 (WS).
+  meshgrid-node:
+    image: ethereum/client-go:v1.14.12
+    container_name: meshgrid-node
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "/genesis/entrypoint.sh"]
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+    volumes:
+      - ./genesis.json:/genesis/genesis.json:ro
+      - ./entrypoint.sh:/genesis/entrypoint.sh:ro
+      - meshgrid-data:/data
+
+  # Quick-start dev node: instant blocks + a pre-funded, auto-unlocked account.
+  # Use this to demo the dashboard immediately (chainId is overridden to dev's).
+  # Start with:  docker compose --profile dev up meshgrid-dev
+  meshgrid-dev:
+    image: ethereum/client-go:v1.14.12
+    container_name: meshgrid-dev
+    profiles: ["dev"]
+    restart: unless-stopped
+    command:
+      - --dev
+      - --dev.period=2
+      - --http
+      - --http.addr=0.0.0.0
+      - --http.port=8545
+      - --http.api=eth,net,web3,txpool,debug
+      - --http.corsdomain=*
+      - --http.vhosts=*
+      - --ws
+      - --ws.addr=0.0.0.0
+      - --ws.port=8546
+      - --ws.api=eth,net,web3,txpool
+      - --ws.origins=*
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+
+volumes:
+  meshgrid-data:
